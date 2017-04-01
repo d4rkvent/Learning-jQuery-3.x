@@ -4,17 +4,17 @@
   test code in the same JavaScript file as the code that calls it.
 ******************************************************************************/
 
-module('Selecting');
+QUnit.module('Selecting');
 
-test('Child Selector', function() {
-  // tests go here
+QUnit.test('Child Selector', (assert) => {
+  assert.expect(0);
 });
 
-test('Attribute Selectors', function() {
-  // tests go here
+QUnit.test('Attribute Selectors', (assert) => {
+  assert.expect(0);
 });
 
-module('Ajax');
+QUnit.module('Ajax');
 
 /******************************************************************************
   End test code; begin custom script code.

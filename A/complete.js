@@ -23,10 +23,26 @@ test('Attribute Selectors', function() {
 
 module('Ajax');
 
+asyncTest('JSON', function() {
+  expect(2);
+  var backbite = {
+    "term": "BACKBITE",
+    "part": "v.t.",
+    "definition": "To speak of a man as you find him when he can't find you."
+  };
+
+  $.getJSON('B.json', function(json, textStatus) {
+    equal(textStatus, 'success', 'Request successful');
+    deepEqual(json[1], backbite, 'result array matches "backbite" map');
+  }).always(function() {
+    start();
+  });
+});
+
 /******************************************************************************
   End test code; begin custom script code.
 ******************************************************************************/
-$(document).ready(function() {
+$(() => {
   $('#selected-plays > li').addClass('horizontal');
   $('a[href^="mailto:"]').addClass('mailto');
   $('a[href$=".pdf"]').addClass('pdflink');

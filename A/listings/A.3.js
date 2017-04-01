@@ -4,23 +4,23 @@
   test code in the same JavaScript file as the code that calls it.
 ******************************************************************************/
 
-module('Selecting');
+QUnit.module('Selecting');
 
-test('Child Selector', function() {
-  expect(1);
-  var topLis = $('#selected-plays > li.horizontal');
-  equal(topLis.length, 3, 'Top LIs have horizontal class');
+QUnit.test('Child Selector', (assert) => {
+  assert.expect(1);
+  const topLis = $('#selected-plays > li.horizontal');
+  assert.equal(topLis.length, 3, 'Top LIs have horizontal class');
 });
 
-test('Attribute Selectors', function() {
-  // tests go here
+QUnit.test('Attribute Selectors', (assert) => {
+  assert.expect(0);
 });
 
-module('Ajax');
+QUnit.module('Ajax');
 
 /******************************************************************************
   End test code; begin custom script code.
 ******************************************************************************/
-$(document).ready(function() {
+$(() => {
   $('#selected-plays > li').addClass('horizontal');
 });
