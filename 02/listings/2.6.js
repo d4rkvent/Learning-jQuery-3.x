@@ -13,6 +13,4 @@ $(() => {
 
   $('a[href^="http"][href*="henry"]')
     .addClass('henrylink');
-
-  $('tr:even').addClass('alt');
 });

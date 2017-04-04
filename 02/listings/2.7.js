@@ -14,6 +14,5 @@ $(() => {
   $('a[href^="http"][href*="henry"]')
     .addClass('henrylink');
 
-  $('tr:nth-child(odd)')
-    .addClass('alt');
+  $('tr:even').addClass('alt');
 });

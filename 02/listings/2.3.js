@@ -5,6 +5,13 @@ $(() => {
   $('#selected-plays li:not(.horizontal)')
     .addClass('sub-level');
 
-  $('a[href^="mailto:"]')
-    .addClass('mailto');
+  $('#selected-plays > li')
+    .addClass('big-letter');
+
+  $('#selected-plays li.horizontal')
+    .addClass('big-letter');
+
+  $('#selected-plays li:not(.sub-level)')
+    .addClass('big-letter');
+
 });

@@ -14,10 +14,6 @@ $(() => {
   $('a[href^="http"][href*="henry"]')
     .addClass('henrylink');
 
-  $('a').filter((i, v) =>
-    v.hostname && v.hostname !== location.hostname
-  ).addClass('external');
-
   $('tr:nth-child(odd)')
     .addClass('alt');
 

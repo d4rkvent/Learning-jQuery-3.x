@@ -10,7 +10,6 @@ $(() => {
 
   $('a[href$=".pdf"]')
     .addClass('pdflink');
-
   $('a[href^="http"][href*="henry"]')
     .addClass('henrylink');
 
@@ -21,5 +20,11 @@ $(() => {
   $('tr:nth-child(odd)')
     .addClass('alt');
 
-  $('td:contains(Henry)').parent().find('td:eq(1)').addClass('highlight').end().find('td:eq(2)').addClass('highlight');
+  $('td:contains(Henry)') // Find every cell containing "Henry"
+    .parent() // Select its parent
+    .find('td:eq(1)') // Find the 2nd descendant cell
+    .addClass('highlight') // Add the "highlight" class
+    .end() // Return to the parent of the cell containing "Henry"
+    .find('td:eq(2)') // Find the 3rd descendant cell
+    .addClass('highlight'); // Add the "highlight" class
 });

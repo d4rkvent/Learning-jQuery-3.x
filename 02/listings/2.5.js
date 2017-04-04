@@ -10,7 +10,4 @@ $(() => {
 
   $('a[href$=".pdf"]')
     .addClass('pdflink');
-
-  $('a[href^="http"][href*="henry"]')
-    .addClass('henrylink');
 });
