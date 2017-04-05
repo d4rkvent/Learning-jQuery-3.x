@@ -4,7 +4,7 @@ $(() => {
       .toggleClass('hover');
   };
 
-  $('#switcher h3')
+  $('#switcher')
     .hover(toggleHover, toggleHover);
 });
 
@@ -22,7 +22,7 @@ $(() => {
         .addClass('selected')
         .siblings('button')
         .removeClass('selected');
-      
+
       e.stopPropagation();
     })
     .on('click', (e) => {

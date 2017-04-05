@@ -4,7 +4,7 @@ $(() => {
       .toggleClass('hover');
   };
 
-  $('#switcher h3')
+  $('#switcher')
     .hover(toggleHover, toggleHover);
 });
 
@@ -28,8 +28,7 @@ $(() => {
     .addClass('selected');
   $('#switcher')
     .click((e) => {
-      console.log(e.target);
-      if ($(event.target).is('button')) {
+      if ($(e.target).is('button')) {
         const bodyClass = e.target.id.split('-')[1];
 
         $('body')

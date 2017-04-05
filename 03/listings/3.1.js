@@ -1,5 +1,6 @@
 $(() => {
-  $('#switcher-large').on('click', function() {
-    $('body').addClass('large');
-  });
+  $('#switcher-large')
+    .on('click', () => {
+      $('body').addClass('large');
+    });
 });

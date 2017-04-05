@@ -4,7 +4,7 @@ $(() => {
       .toggleClass('hover');
   };
 
-  $('#switcher h3')
+  $('#switcher')
     .hover(toggleHover, toggleHover);
 });
 
