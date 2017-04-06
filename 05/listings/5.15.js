@@ -44,14 +44,9 @@ $(() => {
     .each((i, span) => {
       $(span)
         .before([
-          '<a href="#footnote-',
-          i + 1,
-          '" id="context-',
-          i + 1,
-          '" class="context">',
           '<sup>',
           i + 1,
-          '</sup></a>'
+          '</sup>'
         ].join(''))
         .appendTo($notes)
         .wrap('<li></li>');

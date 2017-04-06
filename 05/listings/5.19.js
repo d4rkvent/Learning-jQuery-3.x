@@ -67,9 +67,6 @@ $(() => {
       $(span)
         .clone()
         .addClass('pulled')
-        .find('span.drop')
-          .html('&hellip;')
-          .end()
         .prependTo(
           $(span)
             .parent()

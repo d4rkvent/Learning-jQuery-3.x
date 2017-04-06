@@ -36,14 +36,8 @@ $(() => {
     .insertAfter('div.chapter p');
   $('<a id="top"></a>')
     .prependTo('body');
-
-  const $notes = $('<ol id="notes"></ol>')
-    .insertBefore('#footer');
-
   $('span.footnote')
-    .each((i, span) => {
-      $(span)
-        .appendTo($notes)
-        .wrap('<li></li>');
-    });
+    .insertBefore('#footer')
+    .wrapAll('<ol id="notes"></ol>')
+    .wrap('<li></li>');
 });

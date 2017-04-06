@@ -70,7 +70,6 @@ $(() => {
         .find('span.drop')
           .html('&hellip;')
           .end()
-        .text((i, text) => text)
         .prependTo(
           $(span)
             .parent()

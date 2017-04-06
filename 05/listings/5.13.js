@@ -42,8 +42,9 @@ $(() => {
 
   $('span.footnote')
     .each((i, span) => {
+      $(`<sup>${i + 1}</sup>`)
+        .insertBefore(span);
       $(span)
-        .before(`<sup>${i + 1}</sup>`)
         .appendTo($notes)
         .wrap('<li></li>');
     });

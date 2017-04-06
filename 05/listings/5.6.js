@@ -31,7 +31,4 @@ $(() => {
         )
         .data('read', !$elm.data('read'));
     });
-
-    $('<a href="#top">back to top</a>');
-    $('<a id="top"></a>');
 });

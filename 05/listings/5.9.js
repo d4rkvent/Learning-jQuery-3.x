@@ -36,6 +36,4 @@ $(() => {
       .insertAfter('div.chapter p');
     $('<a id="top"></a>')
       .prependTo('body');
-    $('span.footnote')
-      .insertBefore('#footer');
 });

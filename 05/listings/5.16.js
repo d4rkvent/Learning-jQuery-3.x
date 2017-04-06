@@ -54,11 +54,6 @@ $(() => {
           '</sup></a>'
         ].join(''))
         .appendTo($notes)
-        .append([
-          '&nbsp;(<a href="#context-',
-          i + 1,
-          '">context</a>)'
-        ].join(''))
         .wrap('<li></li>');
     });
 });

@@ -65,12 +65,7 @@ $(() => {
   $('span.pull-quote')
     .each((i, span) => {
       $(span)
-        .clone()
-        .addClass('pulled')
-        .prependTo(
-          $(span)
-            .parent()
-            .css('position', 'relative')
-        );
+        .parent()
+        .css('position', 'relative');
     });
-});
+})

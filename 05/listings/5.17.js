@@ -61,11 +61,4 @@ $(() => {
         ].join(''))
         .wrap('<li></li>');
     });
-
-  $('span.pull-quote')
-    .each((i, span) => {
-      $(span)
-        .parent()
-        .css('position', 'relative');
-    });
-})
+});

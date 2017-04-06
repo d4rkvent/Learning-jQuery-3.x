@@ -43,8 +43,38 @@ $(() => {
   $('span.footnote')
     .each((i, span) => {
       $(span)
-        .before(`<sup>${i + 1}</sup>`)
+        .before([
+          '<a href="#footnote-',
+          i + 1,
+          '" id="context-',
+          i + 1,
+          '" class="context">',
+          '<sup>',
+          i + 1,
+          '</sup></a>'
+        ].join(''))
         .appendTo($notes)
+        .append([
+          '&nbsp;(<a href="#context-',
+          i + 1,
+          '">context</a>)'
+        ].join(''))
         .wrap('<li></li>');
+    });
+
+  $('span.pull-quote')
+    .each((i, span) => {
+      $(span)
+        .clone()
+        .addClass('pulled')
+        .find('span.drop')
+          .html('&hellip;')
+          .end()
+        .text((i, text) => text)
+        .prependTo(
+          $(span)
+            .parent()
+            .css('position', 'relative')
+        );
     });
 });
