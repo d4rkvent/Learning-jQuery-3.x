@@ -135,6 +135,47 @@ $(() => {
       );
     });
 
+  $('#letter-g a')
+    .click((e) => {
+      const formatAuthor = entry =>
+        entry.author ?
+          `<div class="quote-author">${entry.author}</div>` :
+          '';
+
+      const formatQuote = entry =>
+        entry.quote ?
+          `
+          <div class="quote">
+            ${entry.quote.reduce((result, q) => `
+              ${result}
+              <div class="quote-line">${q}</div>
+            `, '')}
+            ${formatAuthor(entry)}
+          </div>
+          ` : '';
+
+      e.preventDefault();
+
+      fetch('/g')
+        .then(resp => resp.json())
+        .then(data => {
+          const html = data.reduce((result, entry) => `
+            ${result}
+            <div class="entry">
+              <h3 class="term">${entry.term}</h3>
+              <div class="part">${entry.part}</div>
+              <div class="definition">
+                ${entry.definition}
+                ${formatQuote(entry)}
+              </div>
+            </div>
+          `, '');
+
+          $('#dictionary')
+            .html(html);
+        });
+    });
+
   const $loading = $('<div/>')
     .attr('id', 'loading')
     .text('Loading...')

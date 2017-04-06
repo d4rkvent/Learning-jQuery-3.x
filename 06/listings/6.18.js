@@ -1,134 +1,167 @@
-$(document).ready(function() {
-  $('#letter-a a').click(function(event) {
-    event.preventDefault();
-    $('#dictionary').hide().load('a.html', function() {
-      $(this).fadeIn();
-    });
-  });
+$(() => {
+  $('#letter-a a')
+    .click((e) => {
+      e.preventDefault()
 
-  $('#letter-b a').click(function(event) {
-    event.preventDefault();
-    $.getJSON('b.json', function(data) {
-      var html = '';
-      $.each(data, function(entryIndex, entry) {
-        html += '<div class="entry">';
-        html += '<h3 class="term">' + entry.term + '</h3>';
-        html += '<div class="part">' + entry.part + '</div>';
-        html += '<div class="definition">';
-        html += entry.definition;
-        if (entry.quote) {
-          html += '<div class="quote">';
-          $.each(entry.quote, function(lineIndex, line) {
-            html += '<div class="quote-line">' + line + '</div>';
-          });
-          if (entry.author) {
-            html += '<div class="quote-author">' + entry.author + '</div>';
-          }
-          html += '</div>';
-        }
-        html += '</div>';
-        html += '</div>';
-      });
-      $('#dictionary').html(html);
-    });
-  });
-
-  $('#letter-c a').click(function(event) {
-    event.preventDefault();
-    $.getScript('c.js');
-  });
-
-  $('#letter-d a').click(function(event) {
-    event.preventDefault();
-    $.get('d.xml', function(data) {
-      $('#dictionary').empty();
-      $(data).find('entry').each(function() {
-        var $entry = $(this);
-        var html = '<div class="entry">';
-        html += '<h3 class="term">' + $entry.attr('term');
-          html += '</h3>';
-        html += '<div class="part">' + $entry.attr('part');
-          html += '</div>';
-        html += '<div class="definition">';
-        html += $entry.find('definition').text();
-        var $quote = $entry.find('quote');
-        if ($quote.length) {
-          html += '<div class="quote">';
-          $quote.find('line').each(function() {
-            html += '<div class="quote-line">';
-              html += $(this).text() + '</div>';
-          });
-          if ($quote.attr('author')) {
-            html += '<div class="quote-author">';
-              html += $quote.attr('author') + '</div>';
-          }
-          html += '</div>';
-        }
-        html += '</div>';
-        html += '</div>';
-        $('#dictionary').append($(html));
-      });
-    });
-  });
-
-  $('#letter-e a').click(function(event) {
-    event.preventDefault();
-    var requestData = {term: $(this).text()};
-    $.get('e.php', requestData, function(data) {
-      $('#dictionary').html(data);
-    }).fail(function(jqXHR) {
       $('#dictionary')
-      .html('Sorry, but an error occurred: ' + jqXHR.status)
-      .append(jqXHR.responseText);
+        .hide()
+        .load('a.html', function(content) {
+          $(this).fadeIn()
+        });
     });
-  });
 
-  $('#letter-f form').submit(function(event) {
-    event.preventDefault();
-    var formValues = $(this).serialize();
-    $.get('f.php', formValues, function(data) {
-      $('#dictionary').html(data);
-    });
-  });
+  $('#letter-b a')
+    .click((e) => {
+      const formatAuthor = entry =>
+        entry.author ?
+          `<div class="quote-author">${entry.author}</div>` :
+          '';
 
-  var url = 'http://examples.learningjquery.com/jsonp/g.php';
-  $('#letter-g a').click(function(event) {
-    event.preventDefault();
-    $.getJSON(url + '?callback=?', function(data) {
-      var html = '';
-      $.each(data, function(entryIndex, entry) {
-        html += '<div class="entry">';
-        html += '<h3 class="term">' + entry.term + '</h3>';
-        html += '<div class="part">' + entry.part + '</div>';
-        html += '<div class="definition">';
-        html += entry.definition;
-        if (entry.quote) {
-          html += '<div class="quote">';
-          $.each(entry.quote, function(lineIndex, line) {
-            html += '<div class="quote-line">' + line + '</div>';
-          });
-          if (entry.author) {
-            html += '<div class="quote-author">' + entry.author + '</div>';
-          }
-          html += '</div>';
-        }
-        html += '</div>';
-        html += '</div>';
+      const formatQuote = entry =>
+        entry.quote ?
+          `
+          <div class="quote">
+            ${entry.quote.reduce((result, q) => `
+              ${result}
+              <div class="quote-line">${q}</div>
+            `, '')}
+            ${formatAuthor(entry)}
+          </div>
+          ` : '';
+
+      e.preventDefault();
+
+      $.getJSON('b.json', (data) => {
+        const html = data.reduce((result, entry) => `
+          ${result}
+          <div class="entry">
+            <h3 class="term">${entry.term}</h3>
+            <div class="part">${entry.part}</div>
+            <div class="definition">
+              ${entry.definition}
+              ${formatQuote(entry)}
+            </div>
+          </div>
+        `, '');
+
+        $('#dictionary')
+          .html(html);
       });
-      $('#dictionary').html(html);
     });
-  });
 
-  var $loading = $('<div id="loading">Loading...</div>')
+  $('#letter-c a')
+    .click((e) => {
+      e.preventDefault();
+      $.getScript('c.js');
+    });
+
+  $('#letter-d a')
+    .click((e) => {
+
+      const formatAuthor = entry =>
+        $(entry).attr('author') ?
+          `<div class="quote-author">
+            ${$(entry).attr('author')}
+          </div>` :
+          '';
+
+      const formatQuote = entry =>
+        $(entry).find('quote').length ?
+          `
+          <div class="quote">
+            ${$(entry)
+                .find('quote')
+                .get()
+                .reduce((result, q) => `
+                  ${result}
+                  <div class="quote-line">
+                    ${$(q).text()}
+                  </div>
+                `, '')}
+            ${formatAuthor(entry)}
+          </div>
+          ` : '';
+
+      e.preventDefault();
+
+      $.get('d.xml', (data) => {
+        const html = $(data)
+          .find('entry')
+          .get()
+          .reduce((result, entry) => `
+            ${result}
+            <div class="entry">
+              <h3 class="term">${$(entry).attr('term')}</h3>
+              <div class="part">${$(entry).attr('part')}</div>
+              <div class="definition">
+                ${$(entry).find('definition').text()}
+                ${formatQuote(entry)}
+              </div>
+            </div>
+          `, '');
+
+        $('#dictionary')
+          .html(html);
+      });
+    });
+
+  $('#letter-e a')
+    .click((e) => {
+      e.preventDefault();
+
+      const requestData = {
+        term: $(e.target).text()
+      };
+
+      $.get('notfound', requestData, (data) => {
+        $('#dictionary').html(data);
+      }).fail((xhr) => {
+        $('#dictionary')
+          .html(`An error occurred:
+            ${xhr.status}
+            ${xhr.responseText}
+          `);
+      });
+    });
+
+  $('#letter-f form')
+    .submit((e) => {
+      e.preventDefault();
+
+      $.post(
+        $(e.target).attr('action'),
+        $(e.target).serialize(),
+        (data) => { $('#dictionary').html(data); }
+      );
+    });
+
+  const $loading = $('<div/>')
+    .attr('id', 'loading')
+    .text('Loading...')
     .insertBefore('#dictionary');
 
-  $(document).ajaxStart(function() {
-    $loading.show();
-  }).ajaxStop(function() {
-    $loading.hide();
-  });
+  $(document)
+    .ajaxStart(() => {
+      $loading.show();
+    })
+    .ajaxStop(() => {
+      $loading.hide();
+    });
 
-  $('body').on('click', 'h3.term', function() {
-    $(this).siblings('.definition').slideToggle();
-  });
+  $('body')
+    .on('click', 'h3.term', (e) => {
+      $(e.target)
+        .siblings('.definition')
+        .slideToggle();
+    });
+});
+
+Promise.all([
+  $.get('a.html'),
+  $.ready
+]).then(([content]) => {
+  $('#dictionary')
+    .hide()
+    .html(content)
+    .fadeIn();
 });
