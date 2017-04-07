@@ -22,8 +22,7 @@ $(() => {
   $('<button/>')
     .text('Resume')
     .click(() => {
-      $('ul:paused')
-        .cycle('resume');
+      $('ul:paused').cycle('resume');
     })
     .appendTo($controls);
 });

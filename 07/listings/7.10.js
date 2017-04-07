@@ -23,8 +23,7 @@ $(() => {
   $('<button/>')
     .text('Resume')
     .click(() => {
-      $('ul:paused')
-        .cycle('resume');
+      $('ul:paused').cycle('resume');
       $.cookie('cyclePaused', null);
     })
     .appendTo($controls);

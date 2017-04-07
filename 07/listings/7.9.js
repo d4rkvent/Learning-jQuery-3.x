@@ -23,8 +23,7 @@ $(() => {
   $('<button/>')
     .text('Resume')
     .click(() => {
-      $('ul:paused')
-        .cycle('resume');
+      $('ul:paused').cycle('resume');
       $.cookie('cyclePaused', null);
     })
     .appendTo($controls);
@@ -47,7 +46,6 @@ $(() => {
 
   $('h1')
     .click((e) => {
-      $(e.target)
-        .toggleClass('highlighted', 'slow');
+      $(e.target).toggleClass('highlighted', 'slow');
     });
 });

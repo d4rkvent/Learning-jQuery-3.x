@@ -71,6 +71,4 @@ $(() => {
   $books
     .find('.title')
     .resizable({ handles: 's' });
-
-  $('button').button();
 });
