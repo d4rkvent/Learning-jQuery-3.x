@@ -9,7 +9,7 @@
   $.sum()
   Return the total of the numeric values in an array/object.
 ******************************************************************************/
-(function($) {
+(($) => {
   $.mathUtils = {
     sum: array =>
       array.reduce(

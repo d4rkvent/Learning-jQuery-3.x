@@ -9,7 +9,7 @@
   $.sum()
   Return the total of the numeric values in an array/object.
 ******************************************************************************/
-(function($) {
+(($) => {
   $.mathUtils = {
     sum: array =>
       array.reduce(
@@ -28,12 +28,12 @@
   .swapClass()
   Exchange one class for another on the selected elements.
 ******************************************************************************/
-(function($) {
+(($) => {
   $.fn.swapClass = function(class1, class2) {
     this
       .each((i, element) => {
         const $element = $(element);
-        
+
         if ($element.hasClass(class1)) {
           $element
             .removeClass(class1)

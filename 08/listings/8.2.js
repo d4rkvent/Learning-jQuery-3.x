@@ -12,7 +12,7 @@
 (($) => {
   $.sum = array =>
     array.reduce(
-      (result, item) =>
+      (result, item) => 
         parseFloat($.trim(item)) + result,
       0
     );
