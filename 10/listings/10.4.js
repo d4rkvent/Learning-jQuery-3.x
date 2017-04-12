@@ -27,7 +27,7 @@ $(() => {
 
     $('div.photo')
       .on('mouseenter mouseleave', (e) => {
-        const $details = $(e.target).find('.details');
+        const $details = $(e.currentTarget).find('.details');
 
         if (e.type == 'mouseenter') {
           $details.fadeTo('fast', 0.7);
