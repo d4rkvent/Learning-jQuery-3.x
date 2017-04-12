@@ -32,13 +32,13 @@ $(() => {
     });
 
   $('div.member')
-    .on('mouseenter mouseleave', ({ type, target }) => {
+    .on('mouseenter mouseleave', ({ type, currentTarget }) => {
       const width = height = type == 'mouseenter' ?
         85 : 75;
       const paddingTop = paddingLeft = type == 'mouseenter' ?
         0 : 5;
 
-      $(target)
+      $(currentTarget)
         .find('img')
         .stop()
         .animate({
