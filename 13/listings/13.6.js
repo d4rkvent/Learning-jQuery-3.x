@@ -17,14 +17,14 @@ $(() => {
         dataType: 'jsonp',
         data: { q: $('#title').val() },
         timeout: 10000,
-        success: (json) => {
+        success(json) {
           var output = json.data.items.map(buildItem);
           output = output.length ?
             output.join('') : 'no results found';
 
           $('#response').html(`<ol>${output}</ol>`);
         },
-        error: () => {
+        error() {
           $('#response').html('Oops. Something went wrong...');
         }
       });

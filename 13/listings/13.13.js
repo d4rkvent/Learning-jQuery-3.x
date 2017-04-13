@@ -18,7 +18,7 @@ Promise.all([
         dataType: 'yaml'
       })),
   $.ready
-]).then(function([data]) {
+]).then(([data]) => {
   const output = Object.keys(data).reduce((result, key) =>
     result.concat(
       `<li><strong>${key}</strong></li>`,

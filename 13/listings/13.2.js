@@ -9,7 +9,7 @@ $(() => {
         data: {
           q: $('#title').val()
         },
-        success: function(data) {
+        success(data) {
           console.log(data);
         }
       });

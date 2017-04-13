@@ -18,7 +18,7 @@ $(() => {
         data: {
           q: $('#title').val()
         },
-        success: (json) => {
+        success(json) {
           var output = json.data.items.map(buildItem);
           output = output.length ?
             output.join('') : 'no results found';
